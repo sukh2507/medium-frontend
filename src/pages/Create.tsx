@@ -1,7 +1,7 @@
 import axios from "axios"
 import { Appbar } from "../components/Appbar"
 import { BACKEND_URL } from "../config"
-import { useState } from "react"
+import { useState, FormEvent, ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom"
 
 export const Create = () => {
@@ -9,7 +9,7 @@ export const Create = () => {
     const [content, setContent] = useState("")
     const navigate = useNavigate()
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
             const response = await axios.post(
@@ -41,7 +41,7 @@ export const Create = () => {
                     <input 
                         type="text" 
                         id="title" 
-                        onChange={(e) => {setTitle(e.target.value)}} 
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {setTitle(e.target.value)}} 
                         aria-describedby="helper-text-explanation" 
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white mb-4 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                         placeholder="Blog Title" 
@@ -55,7 +55,7 @@ export const Create = () => {
                             <label htmlFor="comment" className="sr-only">Your content</label>
                             <textarea 
                                 id="comment" 
-                                onChange={(e) => {setContent(e.target.value)}} 
+                                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {setContent(e.target.value)}} 
                                 className="max-w-screen-lg min-w-[600px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" 
                                 placeholder="Write your blog post content..." 
                                 required 
